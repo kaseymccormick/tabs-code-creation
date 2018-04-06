@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<body lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Program Top Tabs</title><!--font awesome-->
+	<!-- I need to go to program data.js and pull information -->
+    <script src="js/programData.js"></script>
+	<!--i need to be able to reach functions in datafunctions.js -->
+    <script src="js/datafunctions.js"></script>
+    <script src="js/lodash.js"></script>
+    <!--css-->
+
+</head>
+
+<div class="header">
+    <h1>Top tabbed programs</h1>
+</div>
+<div class="container">
+<!--the code i created per tab -->
+	<div id="tab-name">
+<!--code for filter -->
+	<div>
+		<form id="mastersFilter" name="mastersFilter">
+			<p style="display:inline;">
+				<b>Filter:</b>
+			</p><input id="online" name="program-type-checkbox" type="checkbox" value="online"> Online <input id="hybrid" name="program-type-checkbox" type="checkbox" value="hybrid"> Hybrid <input id="campus" name="program-type-checkbox" type="checkbox" value="campus"> On-campus <input id="accelerated" name="program-type-checkbox" type="checkbox" value="accelerated"> Accelerated
+		</form>
+	</div>
+<!--javscript code for filter -->
+		<script type="text/javascript">
+			//make the filter selection select out the programs
+		var $filterCheckboxes = $('input[type="checkbox"]');
+
+		$filterCheckboxes.on('change', function() {
+
+		  var selectedFilters = {};
+
+		  $filterCheckboxes.filter(':checked').each(function() {
+
+			if (!selectedFilters.hasOwnProperty(this.name)) {
+			  selectedFilters[this.name] = [];
+			}
+
+			selectedFilters[this.name].push(this.value);
+
+		  });
+
+		  // create a collection containing all of the filterable elements
+		  var $filteredResults = $('.program');
+
+		  // loop over the selected filter name -> (array) values pairs
+		  $.each(selectedFilters, function(name, filterValues) {
+
+			// filter each .flower element
+			$filteredResults = $filteredResults.filter(function() {
+
+			  var matched = false,
+				currentFilterValues = $(this).data('category').split(' ');
+
+			  // loop over each category value in the current .flower's data-category
+			  $.each(currentFilterValues, function(_, currentFilterValue) {
+
+				// if the current category exists in the selected filters array
+				// set matched to true, and stop looping. as we're ORing in each
+				// set of filters, we only need to match once
+
+				if ($.inArray(currentFilterValue, filterValues) != -1) {
+				  matched = true;
+				  return false;
+				}
+			  });
+
+			  // if matched is true the current .program element is returned
+			  return matched;
+
+			});
+		  });
+
+		  $('.program').hide().filter($filteredResults).show();
+
+		});
+	// add event listener to tabs, when switch a tab clear out the checkboxes
+		var array = document.getElementsByClassName("tab-acc-content")[0].parentNode.childNodes[1].childNodes[1].childNodes;
+
+		for (var i of array) {
+			i.addEventListener("click", handleSelectTab);
+		}
+
+		function handleSelectTab(){
+
+			// check if checkboxes are checked
+			if (($("#mastersFilter input:checkbox:checked").length > 0) || ($("#dualFilter input:checkbox:checked").length > 0)|| ($("#certificatesFilter input:checkbox:checked").length > 0))
+			{
+			// and if so uncheck all checkboxes in forms with name dualFilter, certificatesFilter and mastersFilter
+			unCheckCheckboxes('mastersFilter', false); 
+			unCheckCheckboxes('dualFilter', false); 
+			unCheckCheckboxes('certificatesFilter', false);
+			}
+		};
+
+		function unCheckCheckboxes(formname, checkStatus){
+		  var checkboxes = new Array(); 
+		  checkboxes = document[formname].getElementsByTagName('input');
+ 
+		  for (var i=0; i<checkboxes.length; i++)  {
+		    if (checkboxes[i].type == 'checkbox')   {
+		      checkboxes[i].checked = checkStatus;
+		    }
+		  }
+		};
+
+		</script>
+<!--END CODE FOR FILTER -->
+		
+<!--code per program -->
+	<div class="program" data-category="filterWord anotherFilterWord">
+		<h3>
+			<a href="program link">Title of program</a>
+		</h3>
+		<p>
+			<strong>## Credits | formatTYpes [online, hybrid, accelerated]</strong><br>
+			Short sales sentance on the program<br>
+			<em>Starts in month, month and month</em>
+		</p>
+	</div>
+<!--END CODE PER PROGRAM -->
+</div> <!-- this closes div with id of tab-name -->
+<!--End code per tab-->
+</div>
+</body>
+
+
+</html>

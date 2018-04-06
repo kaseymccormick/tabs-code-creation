@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<body lang="en">
+<head>
+	<!--font awesome-->
+	<script src="https://use.fontawesome.com/177c6c789c.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	
+    <meta charset="UTF-8">
+    <title>Program Top Tabs code creator</title>
+</head>
+	
+	<h1>Program top tab code creator</h1>
+	<p> To get up to date information about each masters, dual masters, doctorate and certificates formatted in code ready to implement in top tab format</p>
+	<h3 class="warning"><strong><i class="fa fa-warning"></i> Don't close this tab until drupal side is done,</strong> your selections dissapear when you close the tab.</h3>
+<div class="directions">
+	
+	<h3>How to use</h3>
+	<ol>
+		<li>Select what each tab is, limit 4</li>
+		<li>Identify what filters should exist for each tab. Filters are staying the same across tabs for usability sake.</li>
+		<li>Click submit</li>
+		<li>Receive code for each tab</li>
+		<li>Copy and paste code in appropriate areas of drual tabbed/accordion block <a>can view how to here</a></li>	
+	</ol>
+</div>
+<div class="content">
+<form id="localStorageTest" method="post" action="">
+    <h3>What are the tabs? Max 4</h3>
+<!--limiting selection http://jsfiddle.net/devmount/n9g5hswo/ -->
+		
+		<b>By degree type</b>
+	<input type="checkbox" name="tabs" id="masters" class="tabs stored" value="masters">Master's
+	<input type="checkbox" name="tabs" id="dual" class="tabs stored" value="dual">Dual master's Degrees
+	<input type="checkbox" name="tabs" id="doctorate" class="tabs stored" value="doctorate">Doctoral Degrees
+	<input type="checkbox" name="tabs" id="certificates" class="tabs stored" value="certificates">Certificates
+</br>
+<b>By bucket</b>
+	<input type="checkbox" name="tabs" id="leadership" class="tabs stored" value="leadership">Leadership
+	<input type="checkbox" name="tabs" id="healthcare" class="tabs stored" value="healthcare">Healthcare
+	<input type="checkbox" name="tabs" id="business" class="tabs stored" value="business">Business
+</br>
+<b> By format</b>
+	<input type="checkbox" name="tabs" id="online" class="tabs stored" value="online">Online
+	<input type="checkbox" name="tabs" id="hybrid" class="tabs stored" value="hybrid">Hybrid
+	<input type="checkbox" name="tabs" id="campus" class="tabs stored" value="campus">On-Campus
+	<input type="checkbox" name="tabs" id="accelerated" class="tabs stored" value="accelerated">Accelerated
+
+
+<h3> How should each tab be filtered by?</h3>
+
+    <label>Message:</label>
+    <textarea name="message" id="anotherID" class="stored"></textarea>
+<!--pull message text with localStorage["message"] -->
+    <input type="submit" class="demo-button" value="Clear" />
+	<input type="checkbox" id="checkbox1">checkbox</input>
+	<input type="checkbox" id="checkbox1">checkbox</input>
+	<input type="checkbox" id="checkbox1">checkbox</input>
+	<input type="checkbox" id="checkbox1">checkbox</input>
+	
+	<button type="button" onClick="save()">save</button>
+
+	
+</form>
+<!--The main things to notice on this form is that the form elements have been given a class of stored, this will be used to allow us to specify which fields to store as you may not want to store all the data a user inputted. -->
+
+<form>
+	
+</form>
+</div>
+	<div id="firstTab" class="hide">
+		<h3>The first tab's code</h3>
+		<textarea id="tabOneResults" rows="10" cols="100" >
+		</textarea>
+	</div>
+	<div id="secondTab"class="hide">
+		<h3>The second tab's code</h3>
+		<textarea id="tabTwoResults" rows="10" cols="100" >
+		</textarea>
+	</div>
+	
+	<div id="thirdTab"class="hide">
+		<h3>The third tab's code</h3>
+		<textarea id="tabThreeResults" rows="10" cols="100" >
+		</textarea>
+	</div>
+	
+	<div id="fourthTab" class="hide">
+		<h3>The fourth tab's code</h3>
+		<textarea id="tabFourResults" rows="10" cols="100" >
+		</textarea>
+	</div>
+
+
+</body>
+</html>
+
+<script type="text/javascript">
+// check if all checkboxes are checked and push to array
+	function test() {
+		    var cboxes = document.getElementsByName("tabs");
+	   		console.log(cboxes);
+		    for (var i=0; i<cboxes.length; i++) {
+				var checkedArray = []
+				//if it's checked grab the value and put it in checkedArray
+				//otherwise do nothing
+        
+        
+		        var thing = (i + (cboxes[i].checked?' checked ':' unchecked ') + cboxes[i].value);
+				document.getElementById('results').innerHTML = '<PRE><CODE><ul><li>bye</li></ul></CODE></PRE>';
+				document.getElementById('results').innerHTML = 
+				'[CDATA[ This is a demo, tags like <p> will appear literally.]]>';
+				
+		    }
+		}
+
+	
+	
+	function tabValue(){
+		//tells me value of checked box but only the first
+		var checkedValue = $('.tabs:checked').val();
+		console.log(checkedValue)
+		
+	}
+	function save() {	
+		var checkbox = document.getElementById("checkbox1");
+	    localStorage.setItem("checkbox1", checkbox.checked);	
+	}
+
+	//for loading
+	var checked = JSON.parse(localStorage.getItem("checkbox1"));
+	    document.getElementById("checkbox1").checked = checked;
+
+
+	
+$(document).ready(function () {
+    function init() {
+		if (localStorage["tabs"]) {
+			$('tabs').val(localStorage["tabs"])
+		}
+        if (localStorage["name"]) {
+            $('#name').val(localStorage["name"]);
+        }
+        if (localStorage["email"]) {
+            $('#email').val(localStorage["email"]);
+        }
+        if (localStorage["message"]) {
+            $('#message').val(localStorage["message"]);
+        }
+	
+    }
+    init();
+});
+
+$('#localStorageTest').submit(function() {
+    localStorage.clear();
+});
+
+</script>
+<!--known working script -->
+<script type="text/javascript">
+	//go to the textArea copyResults, add a text node put code in text node passed to this function	and show text area	
+	//example showCode("<ul><li>Me</li></ul>", "tabOneResults");
+	function showCode(code, textAreaId){
+		var finalCode = code
+		var textArea = textAreaId
+		var divResults = document.getElementById(textArea);
+		var content = document.createTextNode(finalCode);
+		divResults.parentNode.classList.remove("hide")
+		divResults.appendChild(content);
+	}
+</script>
+	
+<style>
+	.warning{
+		color:#ffa300;
+		background-color:#ffa30021;
+		border:solid 1px #ffa300;
+		padding:10px;
+		border-radius:5px;
+	}
+	.directions{
+		width:25%;
+		display:inline-block;
+		background-color:#95d2f340;
+		padding:20px;
+	}
+	.content{
+		width:60%;
+		display:inline-block;
+	}
+	.hide{
+		display:none;
+	}
+	</style>
