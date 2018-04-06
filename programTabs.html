@@ -2,7 +2,7 @@
 <body lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Program Top Tabs</title><!--font awesome-->
+    <title>checking data</title><!--font awesome-->
 	<!-- I need to go to program data.js and pull information -->
     <script src="js/programData.js"></script>
 	<!--i need to be able to reach functions in datafunctions.js -->
@@ -12,9 +12,6 @@
 
 </head>
 
-<div class="header">
-    <h1>Top tabbed programs</h1>
-</div>
 <div class="container">
 <!--the code i created per tab -->
 	<div id="tab-name">
@@ -115,7 +112,7 @@
 <!--code per program -->
 	<div class="program" data-category="filterWord anotherFilterWord">
 		<h3>
-			<a href="program link">Title of program</a>
+			<a id="program-name" href="program link">Title of program</a>
 		</h3>
 		<p>
 			<strong>## Credits | formatTYpes [online, hybrid, accelerated]</strong><br>
@@ -129,5 +126,25 @@
 </div>
 </body>
 
-
+<script type="text/javascript">
+	go through programs, and for each set/make html
+	
+	function setUpPrograms(){
+	program = programs[i].name
+	description = programs[i].descprition
+	formats = programs[i].formats
+	buckets =
+	degreeType = programs[0].degreeType 
+	//TODO find the degree type that's true
+	programs[0].degreeType.masters returns true or false
+	minCreditHours = programs[0].creditHours.minimum 
+	//they dont always have a maximum TODO
+	//How do we want to handle varies extremely? TODO
+	maxCreditHours = programs[0].creditHours.maximum 
+	programStarts = []
+	go through all the program starts and if true push it into programStarts array
+	
+	}
+	
+	</script>
 </html>

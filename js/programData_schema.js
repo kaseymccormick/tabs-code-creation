@@ -25,7 +25,7 @@
 				},
 				"minItems": 1,
 			},
-			"bucket": {
+			"buckets": {
 				"type": "array",
 				"items": {
 					"type": "string"
@@ -36,7 +36,7 @@
 				"type": "object",
 				"properties": {
 					"masters": { "type": "boolean"},
-					"dualDegree": { "type": "boolean"},
+					"dual_degree": { "type": "boolean"},
 					"doctorate": { "type": "boolean"},
 					"certificate": { "type": "boolean"},
 				},
