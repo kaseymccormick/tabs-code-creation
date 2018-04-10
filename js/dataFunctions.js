@@ -129,54 +129,86 @@ function leadershipPrograms(){
 //  
 // -----------------------------
 function showTabsUser(tabSelection){
+		//TODO verify this is the order of tabs for each option
 	if (tabSelection == 'degree'){
-		codeTab(mastersPrograms());
-		codeTab(dualPrograms());
-		codeTab(doctoralPrograms());
-		codeTab(certificatePrograms());
+		var mastersCode = codeTab(mastersPrograms());
+		var dualCode = codeTab(dualPrograms());
+		var doctoralCode = codeTab(doctoralPrograms());
+		var certificateCode = codeTab(certificatePrograms());
+		showCode(mastersCode, "tabOneResults");
+		showCode(dualCode, "tabTwoResults");
+		showCode(doctoralCode, "tabThreeResults");
+		showCode(certificateCode, "tabFourResults");
 	}
+
 	if (tabSelection == 'format'){
-		codeTab(onlinePrograms());
-		codeTab(hybridPrograms());
-		codeTab(acceleratedPrograms());
-		codeTab(campusPrograms());
+		var onlineCode = codeTab(onlinePrograms());
+		var hybridCode = codeTab(hybridPrograms());
+		var acceleratedCode = codeTab(acceleratedPrograms());
+		var campusCode = codeTab(campusPrograms());
+		showCode(onlineCode, "tabOneResults");
+		showCode(hybridCode, "tabTwoResults");
+		showCode(acceleratedCode, "tabThreeResults");
+		showCode(campusCode, "tabFourResults");
+		
 	}
 	if (tabSelection == 'bucket'){
-		codeTab(businessPrograms());
-		codeTab(healthcarePrograms());
-		codeTab(leadershipPrograms());
+		var businessCode = codeTab(businessPrograms());
+		var healthcareCode = codeTab(healthcarePrograms());
+		var leadershipCode = codeTab(leadershipPrograms());
+		showCode(businessCode, "tabOneResults");
+		showCode(healthcareCode, "tabTwoResults");
+		showCode(leadershipCode, "tabThreeResults");
 	}
 	
 } 
 
 
-function codeTabs(programArray){
-	var programCode = ""
-	// for every object in the program array do
-	// 	something with the object.keys
-	// 	then push/put that something into program code
-	//
-	//
-	//
-	// "formats":["Hybrid","Accelerated"],
-	// "buckets":["Healthcare"],
-	// "degreeType": {
-	// 	"masters": true,
-	// 	"dual_degree": false,
-	// 	"doctorate": false,
-	// 	"certificate": false,
-	// },
-		//data catigory is a list comprised of all the entries for programs[0].formats programs[0].buckets programs[0].degreeType.(masters dual_deggree doctorate certificate "whatever is true")
-	// "<div class='program' data-category='" + filterWord anotherFilterWord +
-	// "'> <h3><a href= ' " +program link+
-	// "'>" + programName +
-	// "</a> </h3><p><strong>" +creditHours+
-	// "|" + formatTYpes [online, hybrid, accelerated] +
-	// "</strong><br>" +programDescription+
-	// "<br> <em> Starts in " +programStarts month month and month+
-	// "</em> </p>	</div>"
+function codeTab(programArray){
+	var programCode = [];
+	for (var i = 0; i < programArray.length; i++){
+		
+		var formats = programArray[i].formats;
+		var buckets = programArray[i].buckets;
+		var dataCatigories = formats.concat(buckets);
 	
-	return programCode
+		if (programArray[i].degreeType.masters === true){
+			dataCatigories.push("Masters");
+		}
+		if (programArray[i].degreeType.doctoral === true){
+			dataCatigories.push("Doctoral");
+		}
+		if (programArray[i].degreeType.certificate === true){
+			dataCatigories.push("Certificate");
+		}
+		//TODO it's possible the data catigories cant have commas
+		var dataCatigoriesStr = dataCatigories.slice(0).join(' ')
+		
+		var programStarts = programArray[i].programStarts;
+		//TODO Capital Case the months
+		if (programStarts.length <= 1){
+			var programMonthStr = programStarts;
+		}
+		if (programStarts.length == 2){
+			var programMonthStr = programStarts.slice(0, -1).join(', ')+' and '+programStarts.slice(-1);
+			
+		}
+		if (programStarts.length > 2){
+			var programMonthStr = programStarts.slice(0, -1).join(', ')+', and '+programStarts.slice(-1);
+			
+		}
+	var program = "<div class='program' data-category='" + dataCatigoriesStr +
+	"'> <h3><a href= ' " +programArray[i].programLink+
+	"'>" +programArray[i].name+
+	"</a> </h3><p><strong>" +programArray[i].creditHours+
+	"|" +formats+
+	"</strong><br>" +programArray[i].description+
+	"<br> <em class='start-months'> Starts in " +programMonthStr+
+	"</em> </p>	</div>";
+	programCode.push(program);
+	}
+	var programCodeStr = programCode.slice(0).join(' ');
+	return programCodeStr;
 }
 // -----------------------------------------------------------------------------
 // HANDINGLING THE FILTER
@@ -232,49 +264,7 @@ function codeFilter(filterArray){
 function knockOutSelection(chosen){
 	
 }
-// listen for the submit, or selection of the radio buttons?
 
-//when the tabs are selected this is run to grab and format the program data
-function grabProgramData(tabSelection){
-	//go to json?
-	//uses all programs
-	if (tabSelection == 'degree'){
-		//start the data grab aka initiate the 4 degree functions
-		mastersPrograms();
-		dualPrograms();
-		doctoralPrograms();
-		certificatePrograms();
-		
-		// then -er AND put those arrays through formatting
-		// but formatting doesn't spit out all in one place. Maybe arrays again? arrays of strings instead of objects...
-		
-	}
-
-	if (tabSelection == 'format'){
-		//start the data grab aka initiate the 4 format functions
-		onlinePrograms();
-		hybridPrograms();
-		campusPrograms();
-		acceleratedPrograms();
-		
-		// then -er AND put those arrays through formatting
-		// but formatting doesn't spit out all in one place. Maybe arrays again? arrays of strings instead of objects...
-	}
-	else if (tabSelection =='bucket'){
-		//start the data grab aka initiate the 3 existing bucket functions
-		businessPrograms();
-		healthcarePrograms();
-		leadershipPrograms();
-		// then -er AND put those arrays through formatting
-		// but formatting doesn't spit out all in one place. Maybe arrays again? arrays of strings instead of objects...
-	}
-	
-	else {
-		alert("no tab format selected")
-		console.log("no tab format selected")
-	}
-		
-}
 // function addFilterJavascript(){
 // 	````
 // // <!--javscript code for filter -->

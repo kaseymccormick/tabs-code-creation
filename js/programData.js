@@ -15,20 +15,7 @@ const programs = [
 			"doctorate": false,
 			"certificate": false,
 		},
-		"programStarts":{
-			"august": false,
-			"september": false,
-			"october": true,
-			"november": false,
-			"december": false,
-			"january": false,
-			"february": false,
-			"march": false,
-			"april": true,
-			"may": false,
-			"june": false,
-			"july": false,
-		}
+		"programStarts":["October", "April"],
 	},
 	{
 		"id": 2,	
@@ -44,20 +31,7 @@ const programs = [
 			"doctorate": false,
 			"certificate": false,
 		},
-		"programStarts":{
-			"august": true,
-			"september": false,
-			"october": false,
-			"november": false,
-			"december": false,
-			"january": true,
-			"february": false,
-			"march": false,
-			"april": false,
-			"may": false,
-			"june": false,
-			"july": false,
-		}
+		"programStarts":["August", "January"],
 	},
 	{
 		"id": 3,	
@@ -73,21 +47,7 @@ const programs = [
 			"doctorate": false,
 			"certificate": false,
 		},
-		
-		"programStarts":{
-			"august": true,
-			"september": false,
-			"october": false,
-			"november": false,
-			"december": false,
-			"january": true,
-			"february": false,
-			"march": false,
-			"april": false,
-			"may": true,
-			"june": false,
-			"july": false,
-		}
+		"programStarts":["August","January","May"],
 	},	
 	{
 		"id": 4,	
@@ -103,21 +63,7 @@ const programs = [
 			"doctorate": false,
 			"certificate": true,
 		},
-	
-		"programStarts":{
-			"august": true,
-			"september": false,
-			"october": false,
-			"november": false,
-			"december": false,
-			"january": true,
-			"february": false,
-			"march": false,
-			"april": false,
-			"may": true,
-			"june": false,
-			"july": false,
-		}
+		"programStarts":["August","January"],
 	},
 	{
 		"id": 5,	
@@ -125,7 +71,7 @@ const programs = [
 		"description": "making sure falses are real",	
 		"programLink":"/program/accounting-mac",
 		"formats":["random","on-campus"],
-		"buckets": ["random"],
+		"buckets": ["leadership"],
 		"creditHours":"15-20",
 		"degreeType": {
 			"masters": false,
@@ -133,19 +79,6 @@ const programs = [
 			"doctorate": false,
 			"certificate": false,
 		},
-		"programStarts":{
-			"august": true,
-			"september": false,
-			"october": false,
-			"november": false,
-			"december": false,
-			"january": true,
-			"february": false,
-			"march": false,
-			"april": false,
-			"may": true,
-			"june": false,
-			"july": false,
-		},
-	},
+		"programStarts":["August","January"],
+	}
 ]
