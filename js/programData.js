@@ -5,17 +5,15 @@ const programs = [
 		"id": 1,
         "name": "Executive Healthcare MBA (Master of Business Administration)",
 		"description": "This accelerated 18-month program is designed to position those working in healthcare to take the next step into an administrative role in healthcare management.",
-		"formats":["Hybrid","Accelerated"],
+		"programLink":"/program/accounting-mac",
+		"formats":["Hybrid", "Accelerated"],
 		"buckets":["Healthcare"],
+		"creditHours": "45",
 		"degreeType": {
 			"masters": true,
 			"dual_degree": false,
 			"doctorate": false,
 			"certificate": false,
-		},
-		"creditHours":{
-			"mimimum": 45,
-			
 		},
 		"programStarts":{
 			"august": false,
@@ -30,23 +28,21 @@ const programs = [
 			"may": false,
 			"june": false,
 			"july": false,
-		},
+		}
 	},
 	{
 		"id": 2,	
         "name": "Health and Wellness Coaching (Master of Science)",
 		"description": "Empower individuals to take charge of their own health by teaching life-changing healthy behaviors and ways to sustain them.",	
+		"programLink":"/program/accounting-mac",
 		"formats":["Online"],
 		"buckets": ["Healthcare"],
+		"creditHours":"36",
 		"degreeType": {
 			"masters": true,
 			"dual_degree": false,
 			"doctorate": false,
 			"certificate": false,
-		},
-		"creditHours":{
-			"mimimum": 36,
-			
 		},
 		"programStarts":{
 			"august": true,
@@ -61,23 +57,81 @@ const programs = [
 			"may": false,
 			"june": false,
 			"july": false,
-		},
+		}
 	},
 	{
 		"id": 3,	
         "name": "Health Care Ethics (Master of Science)",
 		"description": "Understand and apply critical thinking to respond to ethical issues that arise in health care.",	
+		"programLink":"/program/accounting-mac",
 		"formats":["Online"],
 		"buckets": ["Healthcare"],
+		"creditHours":"33",
 		"degreeType": {
 			"masters": true,
 			"dual_degree": false,
 			"doctorate": false,
 			"certificate": false,
 		},
-		"creditHours":{
-			"mimimum": 33,
 		
+		"programStarts":{
+			"august": true,
+			"september": false,
+			"october": false,
+			"november": false,
+			"december": false,
+			"january": true,
+			"february": false,
+			"march": false,
+			"april": false,
+			"may": true,
+			"june": false,
+			"july": false,
+		}
+	},	
+	{
+		"id": 4,	
+        "name": "Health Care Ethics",
+		"description": "Learn the basics behind understanding and responding to ethical issues in the health care industry. ",	
+		"programLink":"/program/accounting-mac",
+		"formats":["Online"],
+		"buckets": ["Healthcare"],
+				"creditHours":"15",
+		"degreeType": {
+			"masters": false,
+			"dual_degree": false,
+			"doctorate": false,
+			"certificate": true,
+		},
+	
+		"programStarts":{
+			"august": true,
+			"september": false,
+			"october": false,
+			"november": false,
+			"december": false,
+			"january": true,
+			"february": false,
+			"march": false,
+			"april": false,
+			"may": true,
+			"june": false,
+			"july": false,
+		}
+	},
+	{
+		"id": 5,	
+        "name": "Fake program test",
+		"description": "making sure falses are real",	
+		"programLink":"/program/accounting-mac",
+		"formats":["random","on-campus"],
+		"buckets": ["random"],
+		"creditHours":"15-20",
+		"degreeType": {
+			"masters": false,
+			"dual_degree": false,
+			"doctorate": false,
+			"certificate": false,
 		},
 		"programStarts":{
 			"august": true,
@@ -93,5 +147,5 @@ const programs = [
 			"june": false,
 			"july": false,
 		},
-	}	
+	},
 ]

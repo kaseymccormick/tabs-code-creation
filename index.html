@@ -14,12 +14,12 @@
 	
 	<h1>Program top tab code creator</h1>
 	<p> To get up to date information about each masters, dual masters, doctorate and certificates formatted in code ready to implement in top tab format</p>
-	<h3 class="warning"><strong><i class="fa fa-warning"></i> Don't close this tab until drupal side is done,</strong> your selections dissapear when you close the tab.</h3>
+	<h3 class="warning"><i class="fa fa-warning"></i> <strong>Don't close this tab until drupal side is done,</strong> your selections dissapear when you close the tab.</h3>
 <div class="directions">
 	
 	<h3>How to use</h3>
 	<ol>
-		<li>Select what each tab is, limit 4</li>
+		<li>Select what tabs should be</li>
 		<li>Identify what filters should exist for each tab. Filters are staying the same across tabs for usability sake.</li>
 		<li>Click submit</li>
 		<li>Receive code for each tab</li>
@@ -27,48 +27,23 @@
 	</ol>
 </div>
 <div class="content">
-<form id="localStorageTest" method="post" action="">
-    <h3>What are the tabs? Max 4</h3>
-<!--limiting selection http://jsfiddle.net/devmount/n9g5hswo/ -->
+	<h3>What are the tabs? (pick one)</h3>
+	
+	
+	<input type="radio" id="radioButton" name="tabs" value="degree"> <b>Degree Type:</b> Master's, Dual Master's, Doctoral, Certificates <br/>
+		<input type="radio" id="radioButton" name="tabs" value="bucket"> <b>By Bucket: </b> Leadership, Healthcare, Business<br/>
+			<input type="radio" id="radioButton" name="tabs"> <b value="bucket">By Format:</b> Online, Hybrid, On-Campus, Accelerated
+			
+			<h3>What filters should be available</h3>
+			<input type="radio" id="radioButton" name="filter" value="degree"> <b>Degree Type:</b> Master's, Dual Master's, Doctoral, Certificates <br/>
+				<input type="radio" id="radioButton" name="filter" value="bucket"> <b>By Bucket:</b> Leadership, Healthcare, Business<br/>
+					<input type="radio" id="radioButton" name="filter" value="format"> <b>By Format:</b> Online, Hybrid, On-Campus, Accelerated
+				</br><button type="button" onClick="showFilterUser(localStorage.filter); showTabsUser(localStorage.tabs);
+">Show me the Code</button>
 		
-		<b>By degree type</b>
-	<input type="checkbox" name="tabs" id="masters" class="tabs stored" value="masters">Master's
-	<input type="checkbox" name="tabs" id="dual" class="tabs stored" value="dual">Dual master's Degrees
-	<input type="checkbox" name="tabs" id="doctorate" class="tabs stored" value="doctorate">Doctoral Degrees
-	<input type="checkbox" name="tabs" id="certificates" class="tabs stored" value="certificates">Certificates
-</br>
-<b>By bucket</b>
-	<input type="checkbox" name="tabs" id="leadership" class="tabs stored" value="leadership">Leadership
-	<input type="checkbox" name="tabs" id="healthcare" class="tabs stored" value="healthcare">Healthcare
-	<input type="checkbox" name="tabs" id="business" class="tabs stored" value="business">Business
-</br>
-<b> By format</b>
-	<input type="checkbox" name="tabs" id="online" class="tabs stored" value="online">Online
-	<input type="checkbox" name="tabs" id="hybrid" class="tabs stored" value="hybrid">Hybrid
-	<input type="checkbox" name="tabs" id="campus" class="tabs stored" value="campus">On-Campus
-	<input type="checkbox" name="tabs" id="accelerated" class="tabs stored" value="accelerated">Accelerated
 
 
-<h3> How should each tab be filtered by?</h3>
 
-    <label>Message:</label>
-    <textarea name="message" id="anotherID" class="stored"></textarea>
-<!--pull message text with localStorage["message"] -->
-    <input type="submit" class="demo-button" value="Clear" />
-	<input type="checkbox" id="checkbox1">checkbox</input>
-	<input type="checkbox" id="checkbox1">checkbox</input>
-	<input type="checkbox" id="checkbox1">checkbox</input>
-	<input type="checkbox" id="checkbox1">checkbox</input>
-	
-	<button type="button" onClick="save()">save</button>
-
-	
-</form>
-<!--The main things to notice on this form is that the form elements have been given a class of stored, this will be used to allow us to specify which fields to store as you may not want to store all the data a user inputted. -->
-
-<div id="testing">
-	<p id="testing--content"></p>
-</div>
 </div>
 	<div id="firstTab" class="hide">
 		<h3>The first tab's code</h3>
@@ -93,76 +68,47 @@
 		</textarea>
 	</div>
 
-
 </body>
 </html>
 
 <script type="text/javascript">
-// check if all checkboxes are checked and push to array
-	function test() {
-		    var cboxes = document.getElementsByName("tabs");
-	   		console.log(cboxes);
-		    for (var i=0; i<cboxes.length; i++) {
-				var checkedArray = []
-				//if it's checked grab the value and put it in checkedArray
-				//otherwise do nothing
-        
-        
-		        var thing = (i + (cboxes[i].checked?' checked ':' unchecked ') + cboxes[i].value);
-				document.getElementById('results').innerHTML = '<PRE><CODE><ul><li>bye</li></ul></CODE></PRE>';
-				document.getElementById('results').innerHTML = 
-				'[CDATA[ This is a demo, tags like <p> will appear literally.]]>';
-				
-		    }
-		}
+	// local storage of radio selection tabs
+	$(document).ready(function(){
+	  var radios = document.getElementsByName("tabs");
+	  var val = localStorage.getItem('tabs');
+	  for(var i=0;i<radios.length;i++){
+	    if(radios[i].value == val){
+	      radios[i].checked = true;
+	    }
+	  }
+	  $('input[name="tabs"]').on('change', function(){
+	    localStorage.setItem('tabs', $(this).val());
+  
+	  });
+	});
+	// local storage of radio selection filter
+	$(document).ready(function(){
+	  var radios = document.getElementsByName("filter");
+	  var val = localStorage.getItem('filter');
+	  for(var i=0;i<radios.length;i++){
+	    if(radios[i].value == val){
+	      radios[i].checked = true;
+	    }
+	  }
+	  $('input[name="filter"]').on('change', function(){
+	    localStorage.setItem('filter', $(this).val());
+  
+	  });
+	});
+	
 
 	
 	
-	function tabValue(){
-		//tells me value of checked box but only the first
-		var checkedValue = $('.tabs:checked').val();
-		console.log(checkedValue)
-		
-	}
-	function save() {	
-		var checkbox = document.getElementById("checkbox1");
-	    localStorage.setItem("checkbox1", checkbox.checked);	
-	}
-
-	//for loading
-	var checked = JSON.parse(localStorage.getItem("checkbox1"));
-	    document.getElementById("checkbox1").checked = checked;
-
-
-	
-$(document).ready(function () {
-    function init() {
-		if (localStorage["tabs"]) {
-			$('tabs').val(localStorage["tabs"])
-		}
-        if (localStorage["name"]) {
-            $('#name').val(localStorage["name"]);
-        }
-        if (localStorage["email"]) {
-            $('#email').val(localStorage["email"]);
-        }
-        if (localStorage["message"]) {
-            $('#message').val(localStorage["message"]);
-        }
-	
-    }
-    init();
-});
-
-$('#localStorageTest').submit(function() {
-    localStorage.clear();
-});
 
 </script>
 <!--known working script -->
 <script type="text/javascript">
 	//go to the textArea copyResults, add a text node put code in text node passed to this function	and show text area	
-	//example showCode("<ul><li>Me</li></ul>", "tabOneResults");
 	function showCode(code, textAreaId){
 		var finalCode = code
 		var textArea = textAreaId
@@ -174,24 +120,33 @@ $('#localStorageTest').submit(function() {
 </script>
 	
 <style>
+	body, h3 {
+		font-family: Arial,Helvetica Neue,Helvetica,sans-serif; 
+		color:#303030;
+		
+	}
+	h3{
+		margin-bottom:0px;
+		
+	}
 	.warning{
 		color:#ffa300;
 		background-color:#ffa30021;
 		border:solid 1px #ffa300;
 		padding:10px;
 		border-radius:5px;
+		font-weight:normal;
 	}
-	.directions{
-		width:25%;
-		display:inline-block;
-		background-color:#95d2f340;
-		padding:20px;
-	}
-	.content{
-		width:60%;
-		display:inline-block;
-	}
+	
 	.hide{
 		display:none;
+	}
+	
+	button{
+		width:60%;
+		padding:10px;
+		background-color:#95d2f3;
+		font-size:16px;
+		margin-top:10px;
 	}
 	</style>
