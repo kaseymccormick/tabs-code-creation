@@ -265,90 +265,14 @@ function knockOutSelection(chosen){
 	
 }
 
-// function addFilterJavascript(){
-// 	````
-// // <!--javscript code for filter -->
-// 			//make the filter selection select out the programs
-// 		var $filterCheckboxes = $('input[type="checkbox"]');
-//
-// 		$filterCheckboxes.on('change', function() {
-//
-// 		  var selectedFilters = {};
-//
-// 		  $filterCheckboxes.filter(':checked').each(function() {
-//
-// 			if (!selectedFilters.hasOwnProperty(this.name)) {
-// 			  selectedFilters[this.name] = [];
-// 			}
-//
-// 			selectedFilters[this.name].push(this.value);
-//
-// 		  });
-//
-// 		  // create a collection containing all of the filterable elements
-// 		  var $filteredResults = $('.program');
-//
-// 		  // loop over the selected filter name -> (array) values pairs
-// 		  $.each(selectedFilters, function(name, filterValues) {
-//
-// 			// filter each .program element
-// 			$filteredResults = $filteredResults.filter(function() {
-//
-// 			  var matched = false,
-// 				currentFilterValues = $(this).data('category').split(' ');
-//
-// 			  // loop over each category value in the current .programs's data-category
-// 			  $.each(currentFilterValues, function(_, currentFilterValue) {
-//
-// 				// if the current category exists in the selected filters array
-// 				// set matched to true, and stop looping. as we're ORing in each
-// 				// set of filters, we only need to match once
-//
-// 				if ($.inArray(currentFilterValue, filterValues) != -1) {
-// 				  matched = true;
-// 				  return false;
-// 				}
-// 			  });
-//
-// 			  // if matched is true the current .program element is returned
-// 			  return matched;
-//
-// 			});
-// 		  });
-//
-// 		  $('.program').hide().filter($filteredResults).show();
-//
-// 		});
-// 	// add event listener to tabs, when switch a tab clear out the checkboxes
-// 		var array = document.getElementsByClassName("tab-acc-content")[0].parentNode.childNodes[1].childNodes[1].childNodes;
-//
-// 		for (var i of array) {
-// 			i.addEventListener("click", handleSelectTab);
-// 		}
-//
-// 		function handleSelectTab(){
-//
-// 			// check if checkboxes are checked
-// 			if (($("#mastersFilter input:checkbox:checked").length > 0) || ($("#dualFilter input:checkbox:checked").length > 0)|| ($("#certificatesFilter input:checkbox:checked").length > 0))
-// 			{
-// 			// and if so uncheck all checkboxes in forms with name dualFilter, certificatesFilter and mastersFilter
-// 			unCheckCheckboxes('mastersFilter', false);
-// 			unCheckCheckboxes('dualFilter', false);
-// 			unCheckCheckboxes('certificatesFilter', false);
-// 			}
-// 		};
-//
-// 		function unCheckCheckboxes(formname, checkStatus){
-// 		  var checkboxes = new Array();
-// 		  checkboxes = document[formname].getElementsByTagName('input');
-//
-// 		  for (var i=0; i<checkboxes.length; i++)  {
-// 		    if (checkboxes[i].type == 'checkbox')   {
-// 		      checkboxes[i].checked = checkStatus;
-// 		    }
-// 		  }
-// 		};
-//
-//
-// ````
-// }
+function showFilterJavascriptUser(){
+	var filterJavascript = addFilterJavascript();
+	showCode( filterJavascript, "tabOneResults");
+	showCode( filterJavascript, "tabTwoResults");
+	showCode( filterJavascript, "tabThreeResults");
+	showCode( filterJavascript, "tabFourResults");
+}
+function addFilterJavascript(){
+	
+return "<script type='text/javascript'>var $filterCheckboxes = $('input[type='checkbox']'); $filterCheckboxes.on('change', function() { var selectedFilters = {}; $filterCheckboxes.filter(':checked').each(function() {if (!selectedFilters.hasOwnProperty(this.name)) {selectedFilters[this.name] = [];}selectedFilters[this.name].push(this.value); }); var $filteredResults = $('.program');$.each(selectedFilters, function(name, filterValues) {$filteredResults = $filteredResults.filter(function() { var matched = false,currentFilterValues = $(this).data('category').split(' '); $.each(currentFilterValues, function(_, currentFilterValue) {if ($.inArray(currentFilterValue, filterValues) != -1) {matched = true; return false;}});return matched;});});$('.program').hide().filter($filteredResults).show();});var array = document.getElementsByClassName('tab-acc-content')[0].parentNode.childNodes[1].childNodes[1].childNodes;for (var i of array) {i.addEventListener('click', handleSelectTab);}function handleSelectTab(){if (($('#mastersFilter input:checkbox:checked').length > 0) || ($('#dualFilter input:checkbox:checked').length > 0)|| ($(.#certificatesFilter input:checkbox:checked').length > 0)){unCheckCheckboxes('mastersFilter', false);unCheckCheckboxes('dualFilter', false);unCheckCheckboxes('certificatesFilter', false);}};function unCheckCheckboxes(formname, checkStatus){var checkboxes = new Array();checkboxes = document[formname].getElementsByTagName('input');for (var i=0; i<checkboxes.length; i++)  { if (checkboxes[i].type == 'checkbox')   { checkboxes[i].checked = checkStatus;}}};</script>"
+}

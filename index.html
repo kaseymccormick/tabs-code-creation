@@ -4,8 +4,8 @@
 	<!--font awesome-->
 	<script src="https://use.fontawesome.com/177c6c789c.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script src="js/programData.js"></script>
-    <script src="js/datafunctions.js"></script>
+	<script language="JavaScript" src="programData.js"></script>
+    <script language="JavaScript" src="dataFunctions.js"></script>
 	
 	
     <meta charset="UTF-8">
@@ -14,14 +14,14 @@
 	
 	<h1>Program top tab code creator</h1>
 	<p> To get up to date information about each masters, dual masters, doctorate and certificates formatted in code ready to implement in top tab format</p>
-	<h3 class="warning"><i class="fa fa-warning"></i> <strong>Don't close this tab until drupal side is done,</strong> your selections dissapear when you close the tab.</h3>
+	<h3 class="warning"><i class="fa fa-warning"></i> <strong>Don't close this tab until drupal side is done,</strong> your code dissapears when you close the tab.</h3>
 <div class="directions">
 	
 	<h3>How to use</h3>
 	<ol>
 		<li>Select what tabs should be</li>
 		<li>Identify what filters should exist for each tab. Filters are staying the same across tabs for usability sake.</li>
-		<li>Click submit</li>
+		<li>Click show me the code</li>
 		<li>Receive code for each tab</li>
 		<li>Copy and paste code in appropriate areas of drual tabbed/accordion block <a>can view how to here</a></li>	
 	</ol>
@@ -38,7 +38,7 @@
 			<input type="radio" id="radioButton" name="filter" value="degree"> <b>Degree Type:</b> Master's, Dual Master's, Doctoral, Certificates <br/>
 				<input type="radio" id="radioButton" name="filter" value="bucket"> <b>By Bucket:</b> Leadership, Healthcare, Business<br/>
 					<input type="radio" id="radioButton" name="filter" value="format"> <b>By Format:</b> Online, Hybrid, On-Campus, Accelerated
-				</br><button type="button" onClick="showFilterUser(localStorage.filter); showTabsUser(localStorage.tabs);
+				</br><button type="button" onClick="showFilterUser(localStorage.filter); showTabsUser(localStorage.tabs);showFilterJavascriptUser();
 ">Show me the Code</button>
 		
 
