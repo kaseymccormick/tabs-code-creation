@@ -542,7 +542,7 @@ const programs = [
     		  			"doctorate": false,
     		  			"certificate": false,
 						},
-			    "Program starts online": ["August", "October", "January", "March", J"uly"],
+			    "Program starts online": ["August", "October", "January", "March", "July"],
 			    "Program starts campus": [],
 			  },
 			  {
