@@ -164,7 +164,7 @@ function showTabsUser(tabSelection){
 } 
 
 
-function codeTab(programArray){
+function codeTabFull(programArray){
 	var programCode = [];
 	for (var i = 0; i < programArray.length; i++){
 		
@@ -210,6 +210,52 @@ function codeTab(programArray){
 	var programCodeStr = programCode.slice(0).join(' ');
 	return programCodeStr;
 }
+function codeTabNoDesc(programArray){
+	var programCode = [];
+	for (var i = 0; i < programArray.length; i++){
+		
+		var formats = programArray[i].formats;
+		var buckets = programArray[i].buckets;
+		var dataCatigories = formats.concat(buckets);
+	
+		if (programArray[i].degreeType.masters === true){
+			dataCatigories.push("Masters");
+		}
+		if (programArray[i].degreeType.doctoral === true){
+			dataCatigories.push("Doctoral");
+		}
+		if (programArray[i].degreeType.certificate === true){
+			dataCatigories.push("Certificate");
+		}
+		//TODO it's possible the data catigories cant have commas
+		var dataCatigoriesStr = dataCatigories.slice(0).join(' ')
+		
+		var programStarts = programArray[i].programStarts;
+		//TODO Capital Case the months
+		if (programStarts.length <= 1){
+			var programMonthStr = programStarts;
+		}
+		if (programStarts.length == 2){
+			var programMonthStr = programStarts.slice(0, -1).join(', ')+' and '+programStarts.slice(-1);
+			
+		}
+		if (programStarts.length > 2){
+			var programMonthStr = programStarts.slice(0, -1).join(', ')+', and '+programStarts.slice(-1);
+			
+		}
+	var program = "<div class='program' data-category='" + dataCatigoriesStr +
+	"'> <h3><a href= ' " +programArray[i].programLink+
+	"'>" +programArray[i].name+
+	"</a> </h3><p><strong>" +programArray[i].creditHours+
+	"|" +formats+
+	"</strong><br> <span class='start-months'> Starts in " +programMonthStr+
+	"</span> </p> </div>";
+	programCode.push(program);
+	}
+	var programCodeStr = programCode.slice(0).join(' ');
+	return programCodeStr;
+}
+
 // -----------------------------------------------------------------------------
 // HANDINGLING THE FILTER
 // below functions are used to create the filter HTML for the user
