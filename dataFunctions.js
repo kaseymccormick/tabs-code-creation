@@ -184,16 +184,29 @@ function codeTabFull(programArray){
 		//TODO it's possible the data catigories cant have commas
 		var dataCatigoriesStr = dataCatigories.slice(0).join(' ')
 		
-		var programStarts = programArray[i].programStarts;
+		var programStartsO = programArray[i].programStartsOnline;
 		//TODO Capital Case the months
-		if (programStarts.length <= 1){
+		if (programStartsO.length <= 1){
 			var programMonthStr = programStarts;
 		}
-		if (programStarts.length == 2){
+		if (programStartsO.length == 2){
 			var programMonthStr = programStarts.slice(0, -1).join(', ')+' and '+programStarts.slice(-1);
 			
 		}
-		if (programStarts.length > 2){
+		if (programStartsO.length > 2){
+			var programMonthStr = programStarts.slice(0, -1).join(', ')+', and '+programStarts.slice(-1);
+			
+		}
+		var programStartsC = programArray[i].programStartsCampus;
+		//TODO Capital Case the months
+		if (programStartsC.length <= 1){
+			var programMonthStr = programStarts;
+		}
+		if (programStartsC.length == 2){
+			var programMonthStr = programStarts.slice(0, -1).join(', ')+' and '+programStarts.slice(-1);
+			
+		}
+		if (programStartsC.length > 2){
 			var programMonthStr = programStarts.slice(0, -1).join(', ')+', and '+programStarts.slice(-1);
 			
 		}
@@ -230,16 +243,29 @@ function codeTabNoDesc(programArray){
 		//TODO it's possible the data catigories cant have commas
 		var dataCatigoriesStr = dataCatigories.slice(0).join(' ')
 		
-		var programStarts = programArray[i].programStarts;
+		var programStartsO = programArray[i].programStartsOnline;
 		//TODO Capital Case the months
-		if (programStarts.length <= 1){
+		if (programStartsO.length <= 1){
 			var programMonthStr = programStarts;
 		}
-		if (programStarts.length == 2){
+		if (programStartsO.length == 2){
 			var programMonthStr = programStarts.slice(0, -1).join(', ')+' and '+programStarts.slice(-1);
 			
 		}
-		if (programStarts.length > 2){
+		if (programStartsO.length > 2){
+			var programMonthStr = programStarts.slice(0, -1).join(', ')+', and '+programStarts.slice(-1);
+			
+		}
+		var programStartsC = programArray[i].programStartsCampus;
+		//TODO Capital Case the months
+		if (programStartsC.length <= 1){
+			var programMonthStr = programStarts;
+		}
+		if (programStartsC.length == 2){
+			var programMonthStr = programStarts.slice(0, -1).join(', ')+' and '+programStarts.slice(-1);
+			
+		}
+		if (programStartsC.length > 2){
 			var programMonthStr = programStarts.slice(0, -1).join(', ')+', and '+programStarts.slice(-1);
 			
 		}
